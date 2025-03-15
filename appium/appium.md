@@ -161,7 +161,6 @@ With **Appium 2.x**, it offers enhanced modularity with **driver and plugin mana
 # Challenging Mobile Automation Questions & Answers
 
 ## 1. How do you handle dynamic elements in mobile automation?
-**Answer:**
 - Use **unique resource IDs or accessibility IDs** instead of XPath.
 - Implement **explicit waits** (`WebDriverWait`) to wait for elements dynamically.
 - Use **XPath with contains() or starts-with()** to handle elements with dynamic attributes.
@@ -173,7 +172,7 @@ MobileElement element = wait.until(ExpectedConditions.visibilityOfElementLocated
 ```
 
 ## 2. How do you automate gestures like swipe, scroll, and pinch in Appium 2.x?
-**Answer:**
+
 - Use **W3C Actions API** in Appium 2.x as `TouchAction` is deprecated.
 - Example for swipe up:
 
@@ -187,7 +186,7 @@ driver.perform(List.of(swipe));
 ```
 
 ## 3. How do you handle different screen sizes and resolutions in mobile automation?
-**Answer:**
+
 - Use **relative locators** (percent-based instead of absolute coordinates).
 - Implement **device-specific configurations** using capabilities.
 - Use `driver.manage().window().getSize()` to get screen dimensions dynamically.
@@ -201,13 +200,13 @@ int endY = (int) (size.height * 0.2);
 ```
 
 ## 4. How do you test a mobile app on real devices vs. emulators/simulators?
-**Answer:**
+
 - **Real Device:** More reliable, can test real-world scenarios (network, sensors).
 - **Emulator/Simulator:** Faster execution, used for initial testing but lacks real-world conditions.
 - Use **cloud-based platforms** like **BrowserStack, Sauce Labs, or LambdaTest** to test on multiple devices remotely.
 
 ## 5. What are the major challenges faced in mobile automation?
-**Answer:**
+
 ✅ **Dynamic Elements** – Use explicit waits & unique locators.
 ✅ **Platform Differences** – Maintain separate test strategies for iOS & Android.
 ✅ **Gestures Handling** – Use the latest W3C Actions API.
@@ -219,7 +218,7 @@ adb shell pm grant com.example.app android.permission.ACCESS_FINE_LOCATION
 ```
 
 ## 6. How do you handle pop-ups and alerts in mobile automation?
-**Answer:**
+
 - For native alerts, use `driver.switchTo().alert().accept()`.
 - For custom pop-ups, identify elements using `appPackage` and `appActivity`.
 - Use `mobile: alert` command in iOS automation.
@@ -230,7 +229,7 @@ alert.accept();  // To accept alert
 ```
 
 ## 7. How do you capture logs in Appium?
-**Answer:**
+
 - Use **Appium server logs** for debugging (`appium --log-level debug`).
 - Capture **device logs** using ADB:
 
@@ -248,7 +247,7 @@ for (LogEntry entry : logEntries) {
 ```
 
 ## 8. How do you handle background and foreground app testing in Appium?
-**Answer:**
+
 - Use `driver.runAppInBackground(Duration.ofSeconds(5));` to send the app to the background.
 - Use `driver.activateApp("com.example.app");` to bring it back to the foreground.
 
@@ -258,7 +257,7 @@ driver.activateApp("com.example.app");
 ```
 
 ## 9. How do you test push notifications in mobile automation?
-**Answer:**
+
 - **Android:** Use ADB commands to send push notifications.
 - **iOS:** Use `notification` payload in Xcode simulator.
 
@@ -267,7 +266,7 @@ adb shell am broadcast -a com.android.vending.INSTALL_REFERRER
 ```
 
 ## 10. How do you test hybrid apps in Appium?
-**Answer:**
+
 - Switch between **native** and **webview** using:
 
 ```java
@@ -279,7 +278,7 @@ driver.context("WEBVIEW_com.example.app");  // Switch to WebView
 ```
 
 ## 11. How do you handle biometric authentication (Face ID, Touch ID) in Appium?
-**Answer:**
+
 - Use Appium’s `mobile: enrollBiometric` command to simulate biometric authentication.
 - Example for enabling Face ID:
 
@@ -290,7 +289,7 @@ driver.executeScript("mobile: enrollBiometric", params);
 ```
 
 ## 12. How do you automate deep linking in mobile apps?
-**Answer:**
+
 - Deep linking can be tested by launching the app with a specific URL scheme.
 - Example:
 
@@ -299,7 +298,7 @@ driver.get("myapp://home");
 ```
 
 ## 13. How do you verify network requests and API calls in mobile automation?
-**Answer:**
+
 - Use **BrowserMob Proxy** or **Mitmproxy** to intercept and validate network calls.
 - Monitor logs for network activity:
 
@@ -311,7 +310,7 @@ for (LogEntry log : logs) {
 ```
 
 ## 14. How do you perform battery drain testing in mobile automation?
-**Answer:**
+
 - Use ADB commands to monitor battery consumption.
 
 ```bash
@@ -319,7 +318,7 @@ adb shell dumpsys batterystats > battery_log.txt
 ```
 
 ## 15. How do you handle multi-touch gestures in Appium?
-**Answer:**
+
 - Use W3C Actions API to handle multi-touch gestures like pinch and zoom.
 
 ```java
@@ -330,7 +329,7 @@ Sequence pinch = new Sequence(Finger.INPUT, 1);
 # Scenario-Based Mobile Automation Questions
 
 **A login button is not clickable on some devices but works fine on others. How would you debug this issue?**
-**Answer:**
+
 - Check for **overlapping elements** using UI inspector.
 - Verify the **element's visibility and enabled status**.
 - Use **different waiting strategies** (`explicit waits` instead of `implicit waits`).
@@ -340,7 +339,7 @@ Sequence pinch = new Sequence(Finger.INPUT, 1);
 ---
 
 **An image carousel in the app moves too fast, making automation flaky. How would you handle this?**
-**Answer:**
+
 - Use **custom waits** to synchronize with the carousel speed.
 - If possible, ask developers to add a **test mode** to slow down animations.
 - Capture **carousel state** before performing interactions.
@@ -355,7 +354,7 @@ adb shell settings put global animator_duration_scale 0
 ---
 
 **Your test fails when running on a real device but passes on an emulator. How would you investigate this?**
-**Answer:**
+
 - Verify if the **app behavior differs** between real and virtual devices.
 - Check for **hardware-dependent features** (e.g., fingerprint sensor, camera, GPS).
 - Analyze device logs using `adb logcat` to spot potential crashes or errors.
@@ -365,7 +364,7 @@ adb shell settings put global animator_duration_scale 0
 ---
 
 **The app crashes randomly while running automated tests. How do you find the root cause?**
-**Answer:**
+
 - Capture **device logs** using `adb logcat` and analyze the stack trace.
 - Run tests **with a memory profiler** to check for memory leaks.
 - Validate app behavior under **low memory and CPU stress** conditions.
@@ -378,7 +377,7 @@ adb shell dumpsys meminfo com.example.app
 ---
 
 **You need to automate a scenario where an OTP is received via SMS. How would you handle this?**
-**Answer:**
+
 - Use **ADB commands** to read the latest SMS on Android:
 
 ```bash
@@ -392,7 +391,7 @@ adb shell content query --uri content://sms/inbox --projection body,address,date
 ---
 
 **A file upload feature needs to be tested on a mobile app. How would you automate this?**
-**Answer:**
+
 - Push the file to the device storage using ADB (for Android):
 
 ```bash
@@ -405,7 +404,7 @@ adb push sample.pdf /sdcard/Download/
 ---
 
 **Your automated test needs to validate push notifications. How would you achieve this?**
-**Answer:**
+
 - Simulate a push notification using ADB:
 
 ```bash
@@ -419,7 +418,7 @@ adb shell am broadcast -a com.google.android.c2dm.intent.RECEIVE
 ---
 
 **How would you automate a scenario where the app needs to access location services?**
-**Answer:**
+
 - Grant necessary location permissions using ADB:
 
 ```bash
@@ -440,7 +439,7 @@ driver.executeScript("mobile: setLocation", args);
 ---
 
 **Your app supports deep linking. How would you verify that deep links are working correctly?**
-**Answer:**
+
 - Launch the deep link directly in the app:
 
 ```java
@@ -458,7 +457,7 @@ adb shell am start -a android.intent.action.VIEW -d "myapp://home"
 ---
 
 **How do you test in-app purchases in an automated test?**
-**Answer:**
+
 - Use **Google Play test cards** or Apple Sandbox accounts.
 - Automate the flow up to the payment confirmation step.
 - For validation, check **server-side responses** instead of real transactions.
@@ -467,7 +466,7 @@ adb shell am start -a android.intent.action.VIEW -d "myapp://home"
 ---
 
 **A mobile app’s performance is degrading over time. How would you test for performance issues?**
-**Answer:**
+
 - Use **Appium Performance API** to collect performance metrics.
 - Capture CPU, memory, and battery usage using ADB:
 
@@ -482,7 +481,7 @@ adb shell dumpsys batterystats
 ---
 
 **The mobile app needs to function in offline mode. How do you test this?**
-**Answer:**
+
 - Simulate network loss using ADB:
 
 ```bash
@@ -501,7 +500,7 @@ adb shell svc wifi enable
 ---
 
 **An app update breaks existing automation scripts. How do you handle versioning issues?**
-**Answer:**
+
 - Maintain **backward compatibility** by using stable locators.
 - Implement **feature flags** to toggle new functionality for automation.
 - Store older app versions and test using version-specific test suites.
@@ -510,7 +509,7 @@ adb shell svc wifi enable
 ---
 
 **You need to run mobile tests on multiple devices simultaneously. How do you achieve this?**
-**Answer:**
+
 - Use **Appium Grid** to distribute tests across multiple devices.
 - Run tests in parallel using **TestNG or JUnit**.
 - Use cloud-based services like **Sauce Labs, BrowserStack, or Firebase Test Lab**.
