@@ -43,6 +43,74 @@
 
 
 
+# How to Handle Flaky Test Cases in Mobile Automation
+
+**Flaky tests** are tests that produce inconsistent results, sometimes passing and sometimes failing, even when no changes are made to the code. Here are some strategies to handle flaky test cases in mobile automation:
+
+## **1. Use Explicit Waits Instead of Implicit Waits**
+- Implicit waits apply a fixed wait time for every element, which may not be ideal for dynamic elements.
+- Explicit waits help wait for specific conditions before performing an action.
+
+```java
+WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id("button_login")));
+element.click();
+```
+
+## **2. Implement Retry Mechanism**
+- If a test fails due to a temporary issue, retrying the test can help eliminate false failures.
+
+```java
+int retryCount = 0;
+while (retryCount < 3) {
+    try {
+        driver.findElement(By.id("submit_button")).click();
+        break;
+    } catch (Exception e) {
+        retryCount++;
+    }
+}
+```
+
+## **3. Ensure Test Data is Stable and Predictable**
+- Dynamic test data can cause failures if it changes unexpectedly.
+- Use pre-defined test accounts or mock data.
+
+## **4. Avoid Hardcoded Sleep() Statements**
+- Hardcoded sleeps (`Thread.sleep(5000)`) make tests slower and less reliable.
+- Use conditional waits instead.
+
+## **5. Use Network and API Mocks**
+- Reduce dependency on external services by using stubs or mocks for API responses.
+- This ensures test reliability when external systems are down.
+
+## **6. Parallel Execution and Isolation**
+- Run tests in parallel on different devices to isolate flaky behavior.
+- Use separate sessions for independent tests.
+
+## **7. Regularly Analyze Test Failures**
+- Maintain logs and screenshots for debugging.
+- Use tools like `adb logcat` to analyze device logs for failures.
+
+## **8. Reduce Dependency on UI**
+- Prefer API testing for scenarios that don’t require UI validation.
+- Use deep linking to navigate directly to a specific screen instead of clicking through multiple steps.
+
+## **9. Reset App State Before Each Test**
+- Ensure each test starts with a clean state by reinstalling the app or resetting its data.
+
+```bash
+adb shell pm clear com.example.app
+```
+
+## **10. Use CI/CD Pipelines to Identify Flaky Tests**
+- Track flaky tests using reporting tools like **Allure**, **TestRail**, or **Jenkins Flaky Test Analyzer**.
+- Rerun failed tests automatically in CI pipelines.
+
+By implementing these strategies, you can significantly reduce flakiness and improve the stability of mobile automation tests.
+
+
+
 
 # Challenges in Migrating from Appium 1.x to 2.x
 
