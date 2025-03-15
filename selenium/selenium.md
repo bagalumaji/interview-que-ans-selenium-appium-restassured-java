@@ -261,6 +261,54 @@ driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 //a[position()<=4]
 ```
 
-This Markdown file provides answers to frequently asked Selenium interview questions with Java code examples. 🚀
+Selenium
+
+1. What is a Page Object Model?
+
+Answer: The Page Object Model (POM) is a design pattern in Selenium that enhances test maintenance and reduces code duplication by creating separate Java classes for each webpage, containing locators and reusable methods.
+
+2. What are the advantages and disadvantages of the Page Object Model?
+
+Advantages:
+
+Improves code maintainability and reusability.
+
+Enhances test readability.
+
+Reduces duplication of code.
+
+Disadvantages:
+
+Requires initial setup effort.
+
+More complex structure for small projects.
+
+3. Explain the WebDriver create statement line?
+
+Answer:
+
+WebDriver driver = new ChromeDriver();
+
+WebDriver is an interface.
+
+ChromeDriver() is a class implementing WebDriver.
+
+This statement initializes a Chrome browser instance.
+
+4. What is Selenium Grid?
+
+Answer: Selenium Grid allows running test cases on multiple machines and browsers in parallel, improving execution time and coverage.
+
+5. What kind of waits are there in Selenium?
+
+Answer:
+
+Implicit Wait: Waits for a defined time before throwing an exception.
+
+Explicit Wait: Waits for a specific condition to be met before proceeding.
+
+Fluent Wait: Similar to explicit wait but with polling intervals and custom 
+
+
 
 
