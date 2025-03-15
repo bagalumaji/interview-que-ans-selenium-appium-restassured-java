@@ -1,5 +1,4 @@
-# Selenium Automation Interview Questions & Answers
-
+## **Cucumber**
 
 ## 1. How do you run your test cases in parallel in Cucumber?
 Parallel execution in Cucumber can be achieved using:
@@ -28,4 +27,23 @@ public class TestRunner {}
 
 ---
 
+### 1. How do you run your test cases in parallel in Cucumber?
+**Answer:** By configuring `cucumber-jvm-parallel-plugin` in `pom.xml`.
 
+### 2. Explain the contents of the Runner File in Cucumber?
+**Answer:**
+```java
+@RunWith(Cucumber.class)
+@CucumberOptions(features = "src/test/resources/features", glue = "stepDefinitions")
+public class TestRunner {}
+```
+- `features`: Path of feature files.
+- `glue`: Package containing step definitions.
+
+### 3. What is the difference between Scenario and Scenario Outline in Cucumber?
+**Answer:**
+- **Scenario**: Executes a single example.
+- **Scenario Outline**: Uses `Examples` to run the same scenario with multiple datasets.
+
+### 4. How do you pass data to your Selenium Scripts?
+**Answer:** Using DataTables or Examples in Cucumber.
