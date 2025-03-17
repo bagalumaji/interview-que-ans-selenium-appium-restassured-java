@@ -276,9 +276,13 @@ int endY = (int) (size.height * 0.2);
 ## 5. What are the major challenges faced in mobile automation?
 
 ✅ **Dynamic Elements** – Use explicit waits & unique locators.
+
 ✅ **Platform Differences** – Maintain separate test strategies for iOS & Android.
+
 ✅ **Gestures Handling** – Use the latest W3C Actions API.
+
 ✅ **Network Variability** – Simulate poor network conditions using tools like BrowserStack.
+
 ✅ **App Permissions** – Handle using ADB commands.
 
 ```bash
